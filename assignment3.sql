@@ -1,0 +1,57 @@
+USE University;
+
+-- Question 1
+
+SELECT ID FROM student NATURAL LEFT OUTER JOIN takes WHERE course_id IS NULL;
+
+-- Question 2
+
+SELECT * FROM student NATURAL LEFT OUTER JOIN advisor WHERE i_ID IS NOT NULL;
+
+-- Question 3
+
+-- 3 A
+INSERT IGNORE INTO course(course_id, title, dept_name, credits) VALUES
+('CS-001', 'Weekly Seminar', 'Comp. Sci.', 0);
+
+SELECT * FROM course;
+
+-- 3 B
+INSERT IGNORE INTO section(course_id, sec_id, semester, year, building, room_number, time_slot_id) VALUES
+('CS-001', 1, 'Fall', 2017, NULL, NULL, NULL);
+
+SELECT * FROM section;
+
+-- 3 C 
+INSERT IGNORE INTO takes (ID, course_id, sec_id, semester, year)
+SELECT DISTINCT student.ID, 'CS-001', 1, 'Fall', 2017
+FROM student, section
+WHERE student.dept_name = 'Comp. Sci.';
+
+SELECT * FROM takes;
+
+-- 3 D
+DELETE FROM takes WHERE ID = '12345';
+
+SELECT * FROM takes;
+
+-- 3 E 
+DELETE FROM course WHERE course_id = 'CS-001';
+
+SELECT * FROM takes;
+SELECT * FROM section;
+
+-- 3 F
+
+-- Question 4
+
+SELECT d1.dept_name FROM department AS d1, department AS d2 WHERE d1.dept_name != 'Philosophy' AND d2.dept_name = 'Philosophy' AND d1.budget > d2.budget;
+
+-- Question 5
+
+SELECT course_id, ID FROM takes GROUP BY ID, course_id HAVING count(*) >= 2 ORDER BY course_id;
+
+
+-- Question 7
+
+
