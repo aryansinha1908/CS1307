@@ -93,15 +93,15 @@ WHERE NOT EXISTS (
     SELECT *
     FROM teaches AS t
     JOIN takes AS tk
-      ON t.course_id = tk.course_id
-     AND t.sec_id = tk.sec_id
-     AND t.semester = tk.semester
-     AND t.year = tk.year
+    ON t.course_id = tk.course_id
+    AND t.sec_id = tk.sec_id
+    AND t.semester = tk.semester
+    AND t.year = tk.year
     WHERE t.ID = i.ID
-      AND tk.grade = 'A'
+    AND tk.grade = 'A'
 );
 
--- Question 9
+-- Question 10
 
 SELECT i.ID, i.name
 FROM instructor AS i
@@ -109,21 +109,21 @@ WHERE EXISTS (
     SELECT *
     FROM teaches AS t
     JOIN takes AS tk
-      ON t.course_id = tk.course_id
-     AND t.sec_id = tk.sec_id
-     AND t.semester = tk.semester
-     AND t.year = tk.year
+    ON t.course_id = tk.course_id
+    AND t.sec_id = tk.sec_id
+    AND t.semester = tk.semester
+    AND t.year = tk.year
     WHERE t.ID = i.ID
-      AND tk.grade IS NOT NULL
+    AND tk.grade IS NOT NULL
 )
 AND NOT EXISTS (
     SELECT *
     FROM teaches AS t
     JOIN takes AS tk
-      ON t.course_id = tk.course_id
-     AND t.sec_id = tk.sec_id
-     AND t.semester = tk.semester
-     AND t.year = tk.year
+    ON t.course_id = tk.course_id
+    AND t.sec_id = tk.sec_id
+    AND t.semester = tk.semester
+    AND t.year = tk.year
     WHERE t.ID = i.ID
-      AND tk.grade = 'A'
+    AND tk.grade = 'A'
 );

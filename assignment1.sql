@@ -29,7 +29,7 @@ CREATE TABLE instructor (
     ID varchar(5),
     name varchar(20) NOT NULL,
     dept_name varchar(15),
-    salary numeric(8, 2) CHECK (salary > 29000),
+    salary numeric(8, 2),
     PRIMARY KEY(ID),
     FOREIGN KEY(dept_name) REFERENCES department(dept_name) ON DELETE SET NULL
 );
